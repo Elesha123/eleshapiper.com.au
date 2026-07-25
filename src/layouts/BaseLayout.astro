@@ -1,0 +1,23 @@
+---
+import SeoHead from '../components/SeoHead.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, path, ogImage, jsonLd } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SeoHead title={title} description={description} path={path} ogImage={ogImage} jsonLd={jsonLd} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

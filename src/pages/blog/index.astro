@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout
+  title="Blog — Elesha Piper"
+  description="LinkedIn content strategy, ghostwriting notes and AI-visibility research for consultants and advisors."
+  path="/blog"
+>
+  <nav class="nav">
+    <a href="/" class="nav-brand">Elesha Piper</a>
+    <a href="/#packages">Packages</a>
+    <a href="/blog">Blog</a>
+    <a href="/#about">About</a>
+    <a href="mailto:hello@eleshapiper.com.au" class="cta cta-navy" style="color:#fff;">Get in touch</a>
+  </nav>
+
+  <header class="blog-index-head">
+    <div class="wrap">
+      <span class="section-eyebrow">Blog</span>
+      <h1 class="section-title">Notes on LinkedIn content &amp; AI visibility</h1>
+      <p class="blog-index-sub">Strategy, ghostwriting lessons and research for consultants who'd rather be doing the work than marketing it.</p>
+    </div>
+  </header>
+
+  <section class="blog-index-list">
+    <div class="wrap">
+      {posts.length > 0 ? (
+        <div class="related-grid">
+          {posts.map((post) => <BlogCard post={post} />)}
+        </div>
+      ) : (
+        <p>No posts yet — check back soon.</p>
+      )}
+    </div>
+  </section>
+
+  <footer class="site-footer">© 2026 Elesha Piper — LinkedIn content strategy, newsletters and articles.</footer>
+</BaseLayout>
+
+<style is:global>
+  .blog-index-head { padding: clamp(56px, 8vh, 96px) 0 clamp(32px, 4vh, 48px); text-align: center; }
+  .blog-index-head .wrap { max-width: 720px; }
+  .blog-index-sub { font-size: 17px; line-height: 1.65; color: rgba(17,17,68,.75); margin: 18px auto 0; max-width: 56ch; }
+  .blog-index-list { padding: 0 0 clamp(64px, 9vh, 100px); }
+
+  footer.site-footer { padding: 40px var(--edge); text-align: center; font-size: 14px; color: rgba(17,17,68,.6);
+    border-top: 1px solid #DAD1C8; }
+</style>
