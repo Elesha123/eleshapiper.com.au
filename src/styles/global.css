@@ -33,7 +33,7 @@ body { margin: 0; background: var(--baby); color: var(--ink); font-family: var(-
 a { color: var(--navy); }
 a:hover { color: var(--navy-deep); }
 h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); text-transform: uppercase; letter-spacing: 0.02em; }
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 var(--edge); }
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: var(--edge); }
 
 /* buttons */
 .cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px;
