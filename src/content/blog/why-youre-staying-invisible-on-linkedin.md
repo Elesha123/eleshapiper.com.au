@@ -5,6 +5,7 @@ slug: "why-youre-staying-invisible-on-linkedin"
 category: "Content Strategy"
 pubDate: 2026-07-26
 readTime: "3 min read"
+cover: "./why-youre-staying-invisible-on-linkedin.png"
 ---
 
 You know your domain inside and out. You bring game-changing results to your clients every single week. So why, when you open LinkedIn to write a quick post, do you stare at a blinking cursor for twenty minutes feeling totally stuck?
