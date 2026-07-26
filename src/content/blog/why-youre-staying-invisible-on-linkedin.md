@@ -17,7 +17,7 @@ Most consultants who go quiet aren't bad writers. You're simply standing way too
 
 Here is what's actually happening behind the scenes on LinkedIn today:
 
-- **The Quality Gap is Massive:** Research from the [Edelman & LinkedIn B2B Thought Leadership Impact Report](https://www.edelman.com/insights/b2b-thought-leadership-impact-report) shows that over 73% of decision-makers say thought leadership is more trustworthy than standard marketing, yet less than 15% rate the content they see as excellent. The market is starving for real expertise.
+- **The Quality Gap is Massive:** Research from the [Edelman & LinkedIn B2B Thought Leadership Impact Report](https://www.edelman.com/sites/g/files/aatuss191/files/2024-02/_2024%20Edelman-LinkedIn%20B2B%20Thought%20Leadership%20Impact%20Report%20Final.pdf) shows that over 73% of decision-makers say thought leadership is more trustworthy than standard marketing, yet less than 15% rate the content they see as excellent. The market is starving for real expertise.
 - **Algorithms Favor Depth Over Reach:** According to [Dataslayer's 2026 LinkedIn algorithm report](https://www.dataslayer.ai/blog/linkedin-algorithm-february-2026-whats-working-now), deep educational posts, document carousels, and high-dwell-time insights are outperforming generic posts. Readers and algorithms both want substance.
 - **The 7-Second Window:** Over 72% of your prospective clients are reading on mobile, scanning your post in seconds ([2026 LinkedIn usage statistics](https://connectsafely.ai/articles/linkedin-statistics-2026)). They aren't looking for cleverness; they are looking for a mirror.
 
