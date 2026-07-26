@@ -1,0 +1,420 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'The Weekly LinkedIn Engine — Elesha Piper';
+const description =
+  'A free, ungated tool for consultants: share your week and your writing style, get back ready-to-post LinkedIn drafts in your own voice. No sign-up, nothing stored.';
+---
+
+<BaseLayout title={title} description={description} path="/weekly-linkedin-engine">
+  <nav class="nav">
+    <a href="/" class="nav-brand">Elesha Piper</a>
+    <a href="/#packages">Packages</a>
+    <a href="/blog">Blog</a>
+    <a href="/#about">About</a>
+    <a href="mailto:hello@eleshapiper.com.au" class="cta cta-navy" style="color:#fff;">Get in touch</a>
+  </nav>
+
+  <header class="head">
+    <div class="head-in">
+      <span class="eb">Free Weekly Tool · No sign-up</span>
+      <h1>The Weekly <span class="hl">LinkedIn</span> Engine</h1>
+      <p>Your Friday ritual to set up the week ahead. Share your insights, lessons and wins from the past week, add your own writing style, and get back ready-to-post LinkedIn drafts — in <em>your</em> voice, not anyone else's.</p>
+      <div class="ritual">
+        <span><b>1.</b> Share your style + your week</span>
+        <span><b>2.</b> Pick your angles</span>
+        <span><b>3.</b> Copy into your own doc</span>
+      </div>
+      <div class="privacy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span><b>Nothing is saved. Ever.</b> Your inputs and drafts live only in this browser tab. Copy anything you want into your own document before you leave — refresh the page and it's gone for good.</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app">
+    <!-- INPUT -->
+    <section class="panel">
+      <div class="panel-kick">This week's insights</div>
+      <h2>Share your week</h2>
+
+      <div class="fld">
+        <label>Your writing style
+          <span class="hint">This is what keeps the posts sounding like YOU. Paste a sample of your own writing, or pick a style below.</span></label>
+        <div class="seg" id="styleseg">
+          <button type="button" class="seg-opt on" data-m="sample">Paste my sample</button>
+          <button type="button" class="seg-opt" data-m="pick">Pick a style</button>
+        </div>
+        <textarea id="sample" style="margin-top:10px" placeholder="Paste at least 2 paragraphs of your own writing — an old post, an email, anything in your natural voice. The more, the better the match."></textarea>
+        <select id="stylepick" style="display:none; margin-top:10px">
+          <option value="">Choose a style…</option>
+          <option value="Warm and story-driven: personal, encouraging, builds a narrative, talks directly to the reader">Warm &amp; story-driven</option>
+          <option value="Bold and contrarian: challenges conventional wisdom, confident, opinionated, short punchy sentences">Bold &amp; contrarian</option>
+          <option value="Analytical and data-driven: measured, evidence-led, precise, explains the 'why' with logic and numbers">Analytical &amp; data-driven</option>
+          <option value="Punchy and minimal: very short lines, lots of white space, one idea at a time, high impact">Punchy &amp; minimal</option>
+          <option value="Friendly and conversational: relaxed, plain-spoken, like talking to a colleague over coffee">Friendly &amp; conversational</option>
+        </select>
+      </div>
+
+      <div class="fld">
+        <label>Who do you help?
+          <span class="hint">Your client or audience — be specific.</span></label>
+        <input id="who" type="text" placeholder="e.g. B2B founders scaling past $5M" />
+      </div>
+
+      <div class="fld">
+        <label>Your best moment this week
+          <span class="hint">A client conversation, a win, a lesson, or a case study. Rough notes are fine.</span></label>
+        <textarea id="raw" placeholder="e.g. Helped a client realise their churn wasn't a product problem, it was onboarding. We rewrote their first-week emails and trial-to-paid jumped 18%."></textarea>
+      </div>
+
+      <div class="fld">
+        <label>The lesson or takeaway
+          <span class="hint">What should your audience learn from it? One line is plenty.</span></label>
+        <input id="lesson" type="text" placeholder="e.g. Most 'product' problems are actually onboarding problems." />
+      </div>
+
+      <div class="fld">
+        <label>Choose your angles</label>
+        <div class="angles" id="angles">
+          <div class="angle on" data-a="Personal story"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Story</div>
+          <div class="angle on" data-a="Contrarian take"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Contrarian take</div>
+          <div class="angle on" data-a="Actionable tip list"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Tip list</div>
+          <div class="angle" data-a="Client win / proof"><span class="bx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Client win</div>
+        </div>
+      </div>
+
+      <button class="gen" id="gen">Generate my posts</button>
+      <p class="panel-note">Nothing is stored — copy your posts out before you leave. Come back every week and run it again.</p>
+    </section>
+
+    <!-- OUTPUT -->
+    <section class="out" id="out">
+      <div class="empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        <h3>Your posts will appear here</h3>
+        <p>Fill in your style and your week on the left and hit generate. You'll get one polished draft per angle. Copy each one into your own document — they're not saved anywhere.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">© 2026 Elesha Piper — LinkedIn content strategy, newsletters and articles.</footer>
+</BaseLayout>
+
+<style is:global>
+  :root {
+    --green-deep: #0d7a69;
+    --line: #DAD1C8;
+  }
+
+  /* header */
+  .head { position: relative; overflow: clip; color: #fff;
+    background: radial-gradient(800px 460px at 88% -10%, rgba(155,172,216,.32), transparent 60%),
+      linear-gradient(160deg, #2a3a94 0%, var(--navy-deep) 48%, var(--navy-ink) 100%); }
+  .head::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,.13) 1px, transparent 1.5px); background-size: 30px 30px;
+    mask-image: linear-gradient(115deg, transparent 45%, black 88%); }
+  .head-in { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: clamp(34px, 5vh, 60px) var(--edge) clamp(30px, 4vh, 50px); }
+  .eb { display: inline-flex; gap: 9px; font-size: 12.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--turq); border: 1px solid rgba(155,172,216,.4); border-radius: 999px; padding: 7px 16px; font-family: var(--font-heading); }
+  .head h1 { font-size: clamp(34px, 5.4vw, 60px); line-height: .96; margin: 18px 0 0; max-width: 16ch; }
+  .head h1 .hl { color: var(--green); }
+  .head p { font-size: 17px; line-height: 1.55; max-width: 60ch; color: rgba(255,255,255,.82); margin: 16px 0 0; }
+  .head .ritual { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 22px; }
+  .head .ritual span { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: rgba(255,255,255,.7);
+    display: flex; align-items: center; gap: 8px; }
+  .head .ritual b { color: var(--green); font-family: var(--font-heading); }
+  .head .privacy { display: flex; gap: 12px; align-items: flex-start; margin-top: 22px; max-width: 64ch;
+    background: rgba(155,172,216,.1); border: 1px solid rgba(155,172,216,.28); border-radius: 14px; padding: 14px 18px; }
+  .head .privacy svg { width: 22px; height: 22px; color: var(--turq); flex: none; margin-top: 1px; }
+  .head .privacy span { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,.82); }
+  .head .privacy b { color: #fff; }
+
+  /* layout */
+  .app { max-width: 1180px; margin: 0 auto; padding: clamp(24px, 4vh, 40px) var(--edge) 80px;
+    display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 28px; align-items: start; }
+  @media (max-width: 900px) { .app { grid-template-columns: 1fr; } }
+
+  /* input panel */
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-2);
+    padding: clamp(22px, 3vw, 32px); position: sticky; top: 20px; }
+  @media (max-width: 900px) { .panel { position: static; } }
+  .panel-kick { font-family: var(--font-heading); font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    font-size: 13px; color: var(--green-deep); }
+  .panel h2 { font-size: 26px; margin: 6px 0 0; color: var(--navy-ink); }
+  .fld { margin-top: 22px; }
+  .fld label { display: block; font-family: var(--font-heading); font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+    font-size: 14px; color: var(--navy-ink); margin-bottom: 8px; }
+  .fld label .hint { display: block; font-family: var(--font-body); font-weight: 400; text-transform: none; letter-spacing: 0;
+    font-size: 12.5px; color: rgba(17,17,68,.55); margin-top: 3px; }
+  .fld input, .fld textarea { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: #fff;
+    font-family: var(--font-body); font-size: 15px; color: var(--ink); padding: 13px 15px; resize: vertical; }
+  .fld textarea { min-height: 96px; line-height: 1.5; }
+  .fld input:focus, .fld textarea:focus { outline: 2px solid var(--navy); outline-offset: 1px; border-color: transparent; }
+  .fld input::placeholder, .fld textarea::placeholder { color: rgba(17,17,68,.4); }
+  .fld select { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: #fff; font-family: var(--font-body);
+    font-size: 15px; color: var(--ink); padding: 13px 15px; }
+  .fld select:focus { outline: 2px solid var(--navy); outline-offset: 1px; border-color: transparent; }
+  .seg { display: flex; gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .seg-opt { flex: 1; border: 0; background: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+    font-size: 13px; color: rgba(17,17,68,.6); padding: 12px 10px; transition: background .15s, color .15s;
+    font-family: var(--font-heading); cursor: pointer; }
+  .seg-opt.on { background: linear-gradient(120deg, #2f42a5, var(--navy) 60%, var(--navy-deep)); color: #fff; }
+
+  .angles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .angle { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 14px; font-family: var(--font-body); font-size: 14px; font-weight: 600; color: rgba(17,17,68,.8);
+    cursor: pointer; user-select: none; transition: border-color .15s, background .15s; }
+  .angle .bx { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid var(--line); flex: none; display: grid; place-items: center;
+    color: #fff; transition: background .15s, border-color .15s; }
+  .angle.on { border-color: var(--green); background: rgba(18,156,134,.07); color: var(--navy-ink); }
+  .angle.on .bx { background: linear-gradient(180deg, #17b89e, var(--green-deep)); border-color: transparent; }
+  .angle .bx svg { width: 13px; height: 13px; opacity: 0; }
+  .angle.on .bx svg { opacity: 1; }
+
+  .gen { margin-top: 24px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+    font-weight: 600; text-transform: uppercase; letter-spacing: .06em; font-size: 18px; color: #fff; border: 0;
+    padding: 16px 24px; border-radius: 999px; font-family: var(--font-heading); cursor: pointer;
+    background: linear-gradient(180deg, #2f42a5, var(--navy) 55%, var(--navy-deep));
+    box-shadow: 0 8px 20px rgba(34,51,130,.35), inset 0 1px 0 rgba(255,255,255,.25); transition: transform .16s, box-shadow .16s; }
+  .gen:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(34,51,130,.45), inset 0 1px 0 rgba(255,255,255,.25); }
+  .gen:disabled { opacity: .55; cursor: not-allowed; }
+  .gen .spin { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%;
+    animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .panel-note { font-size: 12.5px; color: rgba(17,17,68,.5); margin-top: 14px; text-align: center; line-height: 1.5; }
+
+  /* output panel */
+  .out { min-height: 400px; }
+  .empty { border: 1.5px dashed var(--line); border-radius: var(--r-lg); background: rgba(255,255,255,.5);
+    padding: 60px 40px; text-align: center; color: rgba(17,17,68,.55); }
+  .empty svg { width: 44px; height: 44px; color: var(--turq); }
+  .empty h3 { font-size: 24px; color: var(--navy-ink); margin: 16px 0 0; }
+  .empty p { font-size: 15px; line-height: 1.6; max-width: 42ch; margin: 10px auto 0; }
+
+  .out-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .out-head h2 { font-size: 24px; color: var(--navy-ink); }
+  .out-head .again { margin-left: auto; font-family: var(--font-heading); font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+    font-size: 14px; color: var(--navy); background: #fff; border: 1.5px solid rgba(34,51,130,.3); border-radius: 999px;
+    padding: 9px 18px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+  .out-head .again:hover { border-color: var(--navy); }
+
+  .post { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-1);
+    overflow: hidden; margin-bottom: 20px; }
+  .post-top { display: flex; align-items: center; gap: 12px; padding: 16px 22px; border-bottom: 1px solid var(--line);
+    background: linear-gradient(120deg, rgba(34,51,130,.04), transparent); }
+  .post-fw { font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; font-size: 16px; color: var(--navy-ink); }
+  .post-why { font-size: 12.5px; color: var(--green-deep); font-weight: 600; }
+  .post-copy { margin-left: auto; font-family: var(--font-heading); font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+    font-size: 13px; color: var(--navy); background: rgba(34,51,130,.06); border: 1px solid rgba(34,51,130,.2);
+    border-radius: 999px; padding: 8px 15px; display: inline-flex; align-items: center; gap: 7px; transition: background .15s; cursor: pointer; }
+  .post-copy:hover { background: rgba(34,51,130,.12); }
+  .post-copy.done { background: rgba(18,156,134,.14); border-color: var(--green); color: var(--green-deep); }
+  .post-body { padding: 22px; white-space: pre-wrap; font-size: 15.5px; line-height: 1.62; color: var(--ink); }
+  .post-foot { padding: 0 22px 18px; font-size: 12.5px; color: rgba(17,17,68,.45); display: flex; gap: 16px; }
+
+  /* soft CTA */
+  .soft { position: relative; overflow: hidden; color: #fff; border-radius: var(--r-lg); margin-top: 8px;
+    background: linear-gradient(160deg, #2a3a94, var(--navy-deep) 55%, var(--navy-ink)); box-shadow: var(--shadow-2); padding: 30px 32px; }
+  .soft::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 6px; background: linear-gradient(180deg, var(--green), var(--turq)); }
+  .soft h3 { font-size: 23px; }
+  .soft p { font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.85); margin: 10px 0 18px; max-width: 52ch; }
+  .soft a { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-heading); font-weight: 600; text-transform: uppercase;
+    letter-spacing: .06em; font-size: 15px; color: var(--navy-ink); text-decoration: none; padding: 12px 24px; border-radius: 999px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--green) 75%, #fff), var(--green)); }
+
+  .err { background: #fff; border: 1px solid #e2b4aa; border-left: 4px solid #c05442; border-radius: var(--r-md);
+    padding: 20px 24px; color: #8a3626; font-size: 15px; line-height: 1.55; }
+  .err b { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: .04em; }
+
+  footer.site-footer { padding: 40px var(--edge); text-align: center; font-size: 14px; color: rgba(17,17,68,.6); border-top: 1px solid #DAD1C8; }
+</style>
+
+<script>
+  const $ = (s: string) => document.querySelector(s) as HTMLElement;
+  const out = $('#out');
+
+  // angle toggles
+  $('#angles').addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest('.angle');
+    if (!a) return;
+    a.classList.toggle('on');
+  });
+
+  // style mode toggle
+  let styleMode = 'sample';
+  $('#styleseg').addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest('.seg-opt') as HTMLElement;
+    if (!b) return;
+    styleMode = b.dataset.m!;
+    document.querySelectorAll('#styleseg .seg-opt').forEach((x) => x.classList.toggle('on', x === b));
+    ($('#sample') as HTMLElement).style.display = styleMode === 'sample' ? '' : 'none';
+    ($('#stylepick') as HTMLElement).style.display = styleMode === 'pick' ? '' : 'none';
+  });
+
+  const VOICE = `You are an expert LinkedIn ghostwriter. Your single most important job is to write in the EXACT voice and style the user gives you — never impose a house style of your own.
+
+Hard rules for every post:
+- Match the user's supplied writing style as closely as you can: their sentence length, warmth, vocabulary, rhythm and level of formality.
+- Write to ONE person as "you". Never corporate.
+- Avoid empty buzzwords (leverage, synergy, unlock, game-changer, best-in-class, seamless, disrupt) unless the user's own sample uses that kind of language.
+- Open with a scroll-stopping hook line (short). Use plenty of white space and short paragraphs, LinkedIn-style.
+- No hype padding. End with a light question or soft invitation to engage.
+- Native LinkedIn formatting: line breaks between thoughts. No markdown. Hashtags only if natural (max 3 at the end).`;
+
+  function buildPrompt(who: string, raw: string, lesson: string, angles: string[], style: string) {
+    return `MY WRITING STYLE (match this above all else):
+${style}
+
+Here is my raw material for this week:
+- Who I help: ${who || '(not specified — infer from the story)'}
+- What happened: ${raw}
+- The lesson: ${lesson || '(infer a strong takeaway from the story)'}
+
+Write ${angles.length} LinkedIn post${angles.length > 1 ? 's' : ''}, ONE for each of these angles: ${angles.join(', ')}.
+
+Each post must be genuinely publishable (120-200 words), fully written out, using the real details above, and unmistakably in MY writing style described at the top.
+
+Respond with ONLY a JSON array, no other text. Each item:
+{"framework":"<the angle name>","why":"<6-9 word note on why this format works>","post":"<the full post text with real line breaks as \\n>"}`;
+  }
+
+  let lastPosts: Array<{ framework: string; why: string; post: string }> = [];
+
+  async function generate() {
+    const who = ($('#who') as HTMLInputElement).value.trim();
+    const raw = ($('#raw') as HTMLTextAreaElement).value.trim();
+    const lesson = ($('#lesson') as HTMLInputElement).value.trim();
+    const angles = [...document.querySelectorAll('.angle.on')].map((a) => (a as HTMLElement).dataset.a!);
+
+    let style: string;
+    if (styleMode === 'sample') {
+      style = ($('#sample') as HTMLTextAreaElement).value.trim();
+      if (style.length < 120) {
+        $('#sample').focus();
+        ($('#sample') as HTMLElement).style.borderColor = '#c05442';
+        return;
+      }
+    } else {
+      style = ($('#stylepick') as HTMLSelectElement).value;
+      if (!style) {
+        $('#stylepick').focus();
+        ($('#stylepick') as HTMLElement).style.borderColor = '#c05442';
+        return;
+      }
+    }
+
+    if (!raw) {
+      $('#raw').focus();
+      ($('#raw') as HTMLElement).style.borderColor = '#c05442';
+      return;
+    }
+    if (!angles.length) return;
+
+    const btn = $('#gen') as HTMLButtonElement;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spin"></span> Writing your posts…';
+    out.innerHTML =
+      '<div class="empty"><h3>Drafting…</h3><p>Turning your week into ' +
+      angles.length +
+      ' post' +
+      (angles.length > 1 ? 's' : '') +
+      '. This takes a few seconds.</p></div>';
+
+    try {
+      const res = await fetch('/api/generate-linkedin-posts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system: VOICE,
+          messages: [{ role: 'user', content: buildPrompt(who, raw, lesson, angles, style) }],
+        }),
+      });
+
+      if (res.status === 429) {
+        throw new Error('rate-limited');
+      }
+      if (!res.ok) {
+        throw new Error('request-failed');
+      }
+
+      const { text } = await res.json();
+      let data;
+      try {
+        data = JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1));
+      } catch (e) {
+        throw new Error('parse');
+      }
+      lastPosts = data;
+      render(data);
+    } catch (err: any) {
+      if (err?.message === 'rate-limited') {
+        out.innerHTML =
+          '<div class="err"><b>Slow down a little.</b><br>You\'ve hit the free-use limit for now — give it a few minutes and try again.</div>';
+      } else {
+        out.innerHTML =
+          '<div class="err"><b>That didn\'t generate.</b><br>Give it another go in a moment — and make sure your "best moment" box has a sentence or two to work with.</div>';
+      }
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Generate my posts';
+    }
+  }
+
+  function esc(s: string) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function render(posts: Array<{ framework: string; why: string; post: string }>) {
+    let html =
+      '<div class="out-head"><h2>Your drafts for this week</h2><button class="again" id="again"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.4 2.6L3 8"/><path d="M3 3v5h5"/></svg>Regenerate</button></div>';
+    posts.forEach((p, i) => {
+      const body = esc(p.post || '');
+      const chars = (p.post || '').length;
+      html += `<div class="post">
+      <div class="post-top">
+        <span class="post-fw">${esc(p.framework || 'Post ' + (i + 1))}</span>
+        <span class="post-why">${esc(p.why || '')}</span>
+        <button class="post-copy" data-i="${i}"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button>
+      </div>
+      <div class="post-body" id="pb${i}">${body}</div>
+      <div class="post-foot"><span>${chars} characters</span><span>${chars <= 1300 ? '✓ Good LinkedIn length' : 'Trim a little for LinkedIn'}</span></div>
+    </div>`;
+    });
+    html += `<div class="soft"><h3>Love this — but still want someone to handle it all for you?</h3>
+    <p>A prompt is the easy part. I do everything around it: pulling the ideas out of you in a monthly call, writing and designing every post, scheduling and publishing, tracking what lands, and keeping you consistent when your week gets busy. You talk for 45 minutes a month — I run the whole engine.</p>
+    <a href="https://eleshapiper.com.au/#packages">See how we can work together →</a></div>`;
+    out.innerHTML = html;
+
+    document.getElementById('again')?.addEventListener('click', generate);
+    out.querySelectorAll('.post-copy').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const i = Number((btn as HTMLElement).dataset.i);
+        const text = lastPosts[i]?.post || '';
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (e) {}
+        btn.classList.add('done');
+        btn.innerHTML =
+          '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Copied';
+        setTimeout(() => {
+          btn.classList.remove('done');
+          btn.innerHTML =
+            '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy';
+        }, 1800);
+      });
+    });
+    out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  $('#gen').addEventListener('click', generate);
+  $('#raw').addEventListener('input', (e) => {
+    (e.target as HTMLElement).style.borderColor = '';
+  });
+  $('#sample').addEventListener('input', (e) => {
+    (e.target as HTMLElement).style.borderColor = '';
+  });
+  $('#stylepick').addEventListener('change', (e) => {
+    (e.target as HTMLElement).style.borderColor = '';
+  });
+</script>

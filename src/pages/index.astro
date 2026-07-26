@@ -12,6 +12,7 @@ const description =
   <a href="#packages">Packages</a>
   <a href="/blog">Blog</a>
   <a href="#about">About</a>
+  <a href="/weekly-linkedin-engine">Prompt Engine</a>
   <a href="mailto:hello@eleshapiper.com.au" class="cta cta-navy" style="color: #fff;">Get in touch</a>
 </nav>
 
@@ -22,7 +23,7 @@ const description =
     <p class="sub">LinkedIn content strategy and ghostwriting for consultants. You bring the frameworks, the wins and the client stories — I turn them into a presence that does the selling for you.</p>
     <div class="row">
       <a href="#packages" class="cta cta-yellow">See the packages</a>
-      <a href="mailto:hello@eleshapiper.com.au" class="cta cta-ghost">Get in touch</a>
+      <a href="/weekly-linkedin-engine" class="cta cta-ghost">Try the free Prompt Engine →</a>
     </div>
   </div>
 </header>
@@ -208,6 +209,29 @@ const description =
         <p>Every week I share prompts designed specifically for consultants — real inspo to help you show up on LinkedIn instead of staring at a blank screen. It’s free, it’s practical, and it’s waiting for you.</p>
       </div>
       <a href="https://www.linkedin.com/company/ai-prompts-for-consultants/" target="_blank" rel="noopener" class="cta cta-navy">Follow on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<section class="engine" data-screen-label="Weekly LinkedIn Engine">
+  <div class="wrap">
+    <div class="engine-band reveal">
+      <div class="engine-in">
+        <div>
+          <span class="engine-eb">Free interactive tool · No email needed</span>
+          <h2>Try my <span class="hl">Weekly LinkedIn Engine</span></h2>
+          <p>Your Friday ritual: share this week's wins and lessons, add your own writing style, and get back ready-to-post LinkedIn drafts in your voice. Genuinely free — no sign-up, no catch, nothing saved.</p>
+          <ul class="engine-ticks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Posts in your voice</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ready in minutes</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Nothing stored</li>
+          </ul>
+        </div>
+        <div class="engine-act">
+          <a href="/weekly-linkedin-engine" class="cta cta-yellow">Start writing free →</a>
+          <span class="fineprint">No email. No credit card. Just open it.</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -502,6 +526,32 @@ const description =
 .follow-copy h3 { font-size: clamp(24px, 3vw, 32px); line-height: 1.05; margin: 14px 0 0; color: var(--navy-ink); }
 .follow-copy p { font-size: 15.5px; line-height: 1.65; color: rgba(17, 17, 68, .78); margin: 12px 0 0; max-width: 58ch; }
 .follow-panel .cta { flex: none; }
+
+/* engine CTA band */
+.engine { padding: clamp(56px, 8vh, 100px) 0; }
+.engine-band { position: relative; overflow: hidden; border-radius: var(--r-lg); color: #fff;
+  padding: clamp(40px, 6vw, 72px) clamp(28px, 5vw, 72px);
+  background: radial-gradient(760px 460px at 88% -12%, rgba(155,172,216,.32), transparent 60%),
+    radial-gradient(600px 420px at -8% 118%, rgba(18,156,134,.28), transparent 58%),
+    linear-gradient(160deg, #2a3a94 0%, var(--navy-deep) 48%, var(--navy-ink) 100%);
+  box-shadow: var(--shadow-3); }
+.engine-band::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.13) 1px, transparent 1.5px); background-size: 30px 30px;
+  mask-image: linear-gradient(115deg, transparent 42%, black 88%); }
+.engine-in { position: relative; z-index: 1; display: grid; grid-template-columns: 1.35fr .65fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
+.engine-eb { display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--turq); font-family: var(--font-heading);
+  border: 1px solid rgba(155,172,216,.4); border-radius: 999px; padding: 7px 16px; background: rgba(155,172,216,.08); }
+.engine-in h2 { font-size: clamp(32px, 4.6vw, 56px); line-height: .98; margin: 20px 0 0; color: #fff; }
+.engine-in h2 .hl { color: var(--yellow); }
+.engine-in > div > p { font-size: 17.5px; line-height: 1.6; color: rgba(255,255,255,.85); margin: 18px 0 0; max-width: 52ch; }
+.engine-ticks { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 24px 0 0; padding: 0; list-style: none; }
+.engine-ticks li { display: flex; align-items: center; gap: 9px; font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,.92); }
+.engine-ticks svg { width: 20px; height: 20px; color: var(--yellow); flex: none; }
+.engine-act { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
+.engine-act .cta { width: 100%; font-size: 19px; padding: 18px 28px; }
+.engine-act .fineprint { text-align: center; font-size: 13px; letter-spacing: .03em; color: rgba(255,255,255,.6); }
+@media (max-width: 820px) { .engine-in { grid-template-columns: 1fr; } }
 
 /* proof */
 .proof { padding: clamp(56px, 7vh, 90px) 0 clamp(64px, 8vh, 100px); position: relative; overflow: clip; color: #fff;
