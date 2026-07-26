@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import BlogCard from '../components/BlogCard.astro';
+import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
 
@@ -29,6 +30,7 @@ const jsonLd = {
   '@type': 'BlogPosting',
   headline: title,
   description,
+  image: cover ? new URL(cover.src, Astro.site).toString() : undefined,
   datePublished: isoDate,
   dateModified: isoDate,
   author: { '@type': 'Person', name: 'Elesha Piper', url: 'https://eleshapiper.com.au' },
@@ -37,7 +39,7 @@ const jsonLd = {
 };
 ---
 
-<BaseLayout title={`${title} — Elesha Piper`} description={description} path={`/blog/${slug}`} jsonLd={jsonLd}>
+<BaseLayout title={`${title} — Elesha Piper`} description={description} path={`/blog/${slug}`} ogImage={cover?.src} jsonLd={jsonLd}>
   <nav class="nav">
     <a href="/" class="nav-brand">Elesha Piper</a>
     <a href="/#packages">Packages</a>
@@ -65,7 +67,7 @@ const jsonLd = {
     <div class="post-hero">
       <div class="wrap">
         {cover ? (
-          <img src={cover.src} width={cover.width} height={cover.height} alt={title} style="width:100%; height:auto; border-radius:24px; box-shadow:var(--shadow-2); border:1px solid #DAD1C8;" />
+          <Image src={cover} alt={title} width={1000} height={525} style="width:100%; height:auto; border-radius:24px; box-shadow:var(--shadow-2); border:1px solid #DAD1C8;" />
         ) : (
           <div class="img-ph">Cover image — 16:9</div>
         )}
